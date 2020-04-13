@@ -11,7 +11,10 @@ jQuery("document").ready( () => {
             contentType:"application/json",
             processData:false,
             data:JSON.stringify(params),
-            dataType:"json"
+            dataType:"json",
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader('X-WP-Nonce', NonceSettings.nonce);
+			}
         });
         promise.then(json =>{
             if(json.result){
