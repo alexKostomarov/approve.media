@@ -29,6 +29,10 @@ add_action( 'wp_enqueue_scripts', function (){
     wp_register_script( 'add-post', plugins_url( '/js/add-post.js', __FILE__ ), array( 'jquery' ) );
 
     wp_enqueue_script( 'add-post' );
+    
+    wp_localize_script('cities', 'NonceSettings', [
+      'nonce' => wp_create_nonce('wp_rest'),
+    ]);
 });
 
 ?>
