@@ -19,7 +19,16 @@ jQuery("document").ready(function () {
 
         if (name.trim() === "") return false;
 
-        const promise = jQuery.post( "wp-json/estate_api/v1/cities", {title:name },"json");
+        const promise = jQuery.post( 
+			"wp-json/estate_api/v1/cities", 
+			{title:name },
+			"json", 
+			{
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader('X-WP-Nonce', NonceSettings.nonce);
+				},
+			}
+		);
 
         promise.then( json =>{
 
